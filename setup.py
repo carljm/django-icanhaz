@@ -40,6 +40,7 @@ setup(
         "Framework :: Django",
     ],
     zip_safe=False,
-    tests_require=["Django>=1.5"],
+    # mock is only needed with python 2.x
+    tests_require=["Django>=1.5", "mock"],
     test_suite="runtests.runtests"
 )

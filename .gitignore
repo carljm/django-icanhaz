@@ -1,6 +1,7 @@
 .tox/
 htmlcov/
 *.egg
+*.pyc
 django_icanhaz*.egg-info
 dist/
 __pycache__/

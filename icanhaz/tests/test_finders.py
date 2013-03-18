@@ -3,7 +3,10 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 
-from unittest.mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock import patch
 
 from .utils import override_settings
 
