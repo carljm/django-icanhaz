@@ -3,3 +3,4 @@ htmlcov/
 *.egg
 django_icanhaz*.egg-info
 dist/
+__pycache__/

@@ -38,7 +38,8 @@ def _get_app_template_dirs():
     for app in conf.INSTALLED_APPS:
         try:
             mod = import_module(app)
-        except ImportError, e:
+        except ImportError:
+            e = sys.exc_info()[1]
             raise ImproperlyConfigured("ImportError %s: %s" % (app, e.args[0]))
         app_dir = os.path.dirname(mod.__file__)
         for dirname in conf.ICANHAZ_APP_DIRNAMES:

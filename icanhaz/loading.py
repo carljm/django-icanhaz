@@ -1,3 +1,5 @@
+import sys
+
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.importlib import import_module
 
@@ -21,13 +23,15 @@ def _get_finders():
         modpath, cls_name = finder_path.rsplit(".", 1)
         try:
             mod = import_module(modpath)
-        except ImportError, e:
+        except ImportError:
+            e = sys.exc_info()[1]
             raise ImproperlyConfigured(
                 "ImportError %s: %s" % (modpath, e.args[0]))
 
         try:
             cls = getattr(mod, cls_name)
-        except AttributeError, e:
+        except AttributeError:
+            e = sys.exc_info()[1]
             raise ImproperlyConfigured(
                 "AttributeError %s: %s" % (cls_name, e.args[0]))
 
