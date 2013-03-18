@@ -36,9 +36,10 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.3",
         "Framework :: Django",
     ],
     zip_safe=False,
-    tests_require=["Django>=1.2", "mock"],
+    tests_require=["Django>=1.5"],
     test_suite="runtests.runtests"
 )
