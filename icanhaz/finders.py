@@ -45,7 +45,10 @@ def _get_app_template_dirs():
         for dirname in conf.ICANHAZ_APP_DIRNAMES:
             template_dir = os.path.join(app_dir, dirname)
             if os.path.isdir(template_dir):
-                ret.append(template_dir.decode(fs_encoding))
+                # Only python 2.x needs decoding
+                if isinstance(template_dir, bytes):
+                    template_dir = template_dir.decode(fs_encoding)
+                ret.append(template_dir)
     return ret
 
 
