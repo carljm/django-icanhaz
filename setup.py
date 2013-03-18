@@ -1,4 +1,5 @@
 from os.path import join, dirname
+from sys import version_info
 
 from setuptools import setup, find_packages
 
@@ -16,6 +17,13 @@ def get_version():
                 return line.split("=")[1].strip().strip('"')
     finally:
         fh.close()
+
+if version_info[0] < 3:
+    tests_require = ["Django>=1.2", "mock"]
+else:
+    # py3k is only supported in Django>=1.5, and mock is included in
+    # python 3.3
+    tests_require = ["Django>=1.5"]
 
 setup(
     name="django-icanhaz",
@@ -40,7 +48,6 @@ setup(
         "Framework :: Django",
     ],
     zip_safe=False,
-    # mock is only needed with python 2.x
-    tests_require=["Django>=1.5", "mock"],
+    tests_require=tests_require,
     test_suite="runtests.runtests"
 )
