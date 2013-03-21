@@ -4,6 +4,8 @@ CHANGES
 tip (unreleased)
 ----------------
 
+* Added support for Python 3.2+. Thanks Brad Pitcher!
+
 0.2.1 (2012.01.09)
 ------------------
 
