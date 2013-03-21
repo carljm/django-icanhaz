@@ -1,5 +1,5 @@
 from os.path import join, dirname
-from sys import version_info
+import sys
 
 from setuptools import setup, find_packages
 
@@ -18,12 +18,15 @@ def get_version():
     finally:
         fh.close()
 
-if version_info[0] < 3:
-    tests_require = ["Django>=1.2", "mock"]
+if sys.version_info[0] < 3:
+    tests_require = ["Django>=1.2"]
 else:
-    # py3k is only supported in Django>=1.5, and mock is included in
-    # python 3.3
+    # py3k is only supported in Django>=1.5
     tests_require = ["Django>=1.5"]
+
+# mock is included in Python 3.3+
+if sys.version_info < (3, 3):
+    tests_require.append("mock")
 
 setup(
     name="django-icanhaz",
@@ -44,6 +47,7 @@ setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
         "Framework :: Django",
     ],
